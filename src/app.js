@@ -44,7 +44,7 @@ function createAPP() {
     ----------------------------------------------------------------------- */
     app.use(
         session({
-            secret: "este-segredo-e-muito-secreto"
+            secret: "este-segredo-e-muito-secreto",
         })
     );
 
