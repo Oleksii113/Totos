@@ -45,6 +45,13 @@ function createAPP() {
     app.use(
         session({
             secret: "este-segredo-e-muito-secreto",
+            name: "milionario.sid",
+            resave: false,
+            saveUninitialized: true,
+            cookie: {
+                maxAge: 1000*60*30,
+                httpOnly: true,
+            },
         })
     );
 
