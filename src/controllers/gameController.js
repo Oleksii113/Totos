@@ -13,7 +13,7 @@
 
 import QUESTIONS from "../data/questions.js";
 import PRIZES from "../data/prizes.js";
-import { pickNextQuestion } from "../utils/helpers.js";
+import { pickNextQuestion, apply5050 } from "../utils/helpers.js";
 
 const MAX_INDEX = PRIZES.length - 1;
 
