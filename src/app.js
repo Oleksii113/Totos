@@ -31,6 +31,9 @@ function createAPP() {
     app.set("view engine", "ejs");
     app.set("views", path.join(__dirname, "views"));
 
+    // Aceder a conyeudos estaticos na pasta publica
+    app.use(express.static(path.join(__dirname, "..", "public")));
+
     // Usar rotas
     app.use("/", gameRoutes);
 
