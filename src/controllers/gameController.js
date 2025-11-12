@@ -42,5 +42,6 @@ export function startGame(req, res) {
         hintQuestionId: null
     };
     req.session.game.currentQuestion = pickNextQuestion(req.session.game);
+    res.redirect("/game");
 }
 
