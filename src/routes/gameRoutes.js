@@ -19,7 +19,7 @@
 
 import { Router } from "express";
 
-import { showHome } from "../controllers/gameController.js";
+import { showHome, startGame } from "../controllers/gameController.js";
 
 const router = Router();
 
@@ -29,5 +29,7 @@ const router = Router();
  * Ecrã inicial (landing). Mostra botão "Começar".
  */
 router.get("/", showHome);
+
+router.post("/start", startGame);
 
 export default router;

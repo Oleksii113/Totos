@@ -28,3 +28,12 @@ export function showHome(req, res) {
         title: "Quem quer ser milionário.",
     });
 }
+
+export function startGame(req, res) {
+    req.session.game = {
+        currentIndex: 0, // Prémio atual
+        prizes: PRIZES, // Array de prémios
+        remainingQuestions: [...QUESTIONS], // Perguntas restantes
+    }
+}
+
