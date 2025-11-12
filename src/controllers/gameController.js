@@ -13,6 +13,7 @@
 
 import QUESTIONS from "../data/questions.js";
 import PRIZES from "../data/prizes.js";
+import { pickNextQuestion } from "../utils/helpers.js";
 
 const MAX_INDEX = PRIZES.length - 1;
 
@@ -34,6 +35,12 @@ export function startGame(req, res) {
         currentIndex: 0, // Prémio atual
         prizes: PRIZES, // Array de prémios
         remainingQuestions: [...QUESTIONS], // Perguntas restantes
-    }
+        currentQuestion: null,
+        used: {5050: false, hint: false, swat: false },
+        removedOptions: [],
+        safePrizeIndex: 4, // patamar de segurança
+        hintQuestionId: null
+    };
+    req.session.game.currentQuestion = pickNextQuestion(req.session.game);
 }
 
