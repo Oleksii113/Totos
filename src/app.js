@@ -7,7 +7,7 @@
 
 import express from "express"; // Importa o módulo express
 import path from "path"; // Importa o path para chegar às vistas
-import { fileURLToPath, fileURLToPathBuffer } from "url"; // // Importa os
+import { fileURLToPath } from "url"; // // Importa os
 // urls dos ficheiros das vistas
 
 // Importar rotas
