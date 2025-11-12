@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <%- include("../partials/_head") %>
+    <body class="theme-dark d-flex flex-column min-vh-100">
+        <!-- Header opcional na home: podes remover se quiseres um hero “limpo” -->
+        <%- include("../partials/_header") %>
+
+        <main class="container my-5">
+            <section class="p-5 rounded-4 bg-gradient shadow text-center hero">
+                <h1 class="mb-3">Quem Quer Ser Milionário</h1>
+                <p class="lead mb-4">
+                    Responde com cabeça, usa as ajudas com estratégia e sobe a
+                    torre dos prémios!
+                </p>
+
+                <form action="/start" method="post">
+                    <button class="btn btn-primary btn-lg px-5">Começar</button>
+                </form>
+            </section>
+
+            <!-- Secção opcional com “regras”/legenda de ajudas -->
+            <section class="row g-4 mt-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">50/50</h5>
+                            <p class="card-text mb-0">
+                                Remove duas opções erradas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Dica</h5>
+                            <p class="card-text mb-0">
+                                Mostra uma pista discreta sobre a resposta
+                                correta.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Trocar</h5>
+                            <p class="card-text mb-0">
+                                Troca a pergunta atual por outra.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include("../partials/_footer") %>
+    </body>
+</html>

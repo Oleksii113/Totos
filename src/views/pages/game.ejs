@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <%- include("../partials/_head") %>
+  <body class="theme-dark d-flex flex-column min-vh-100">
+    <%- include("../partials/_header") %>
+
+    <main class="container my-4">
+      <div class="row g-4">
+        <!-- ==================== Coluna Esquerda: Pergunta + Respostas ==================== -->
+        <div class="col-lg-8">
+          <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header bg-primary text-white rounded-top-4">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong>Pergunta <%= index + 1 %></strong>
+                <div class="d-flex gap-2">
+                  <!-- Ajudas -->
+                  <form action="/lifeline/5050" method="post">
+                    <button class="btn btn-light btn-sm" <%= used["5050"] ? "disabled" : "" %>>50/50</button>
+                  </form>
+                  <form action="/lifeline/hint" method="post">
+                    <button class="btn btn-warning btn-sm" <%= used["hint"] ? "disabled" : "" %>>Dica</button>
+                  </form>
+                  <form action="/lifeline/swap" method="post">
+                    <button class="btn btn-info btn-sm" <%= used["swap"] ? "disabled" : "" %>>Trocar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body p-4">
+              <!-- Enunciado -->
+              <p class="fs-4 mb-4"><%= q.text %></p>
+
+              <!-- Dica (apenas quando usada) -->
+              <% if (showHint) { %>
+                <div class="alert alert-warning">Dica: <%= q.hint %></div>
+            <% } %>
+
+              <!-- Respostas -->
+              <form action="/answer" method="post" class="d-grid gap-3">
+                <% q.options.forEach((opt, i) => { %>
+                  <% const removed = removedOptions.includes(i); %>
+                  <button
+                    class="btn btn-outline-primary answer-btn"
+                    name="option"
+                    value="<%= i %>"
+                    <%= removed ? "disabled" : "" %>>
+                    <span class="badge bg-primary me-2"><%= String.fromCharCode(65 + i) %></span>
+                    <%= removed ? "—" : opt %>
+                  </button>
+                <% }) %>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== Coluna Direita: Torre de Prémios ==================== -->
+        <div class="col-lg-4">
+          <div class="card shadow border-0 rounded-4">
+            <div class="card-header bg-dark text-white rounded-top-4">
+              <strong>Torre de prémios</strong>
+            </div>
+
+            <!--
+              Lista numerada da base para o topo (índice 0 → nível 1).
+              O nível atual recebe uma classe especial para destaque.
+            -->
+            <ol class="list-group list-group-numbered list-group-flush prize-ladder">
+              <% prizes.forEach((p, i) => { %>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center
+                  <%= i === index ? 'active-level' : '' %>">
+                  <span>Nível <%= i + 1 %></span>
+                  <span class="fw-bold">€ <%= p.toLocaleString("pt-PT") %></span>
+                </li>
+              <% }) %>
+            </ol>
+          </div>
+
+          <!-- Legenda opcional (podes ligar ao safePrizeIndex se quiseres colorir) -->
+          <div class="small text-muted mt-2">
+            <span class="badge bg-warning-subtle text-dark">Destaque</span> nível atual
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <%- include("../partials/_footer") %>
+  </body>
+</html>

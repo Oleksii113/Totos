@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Paleta -->
+  <defs>
+    <!-- Glow suave para o anel -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Petala base (duplicada por rotação) -->
+    <path id="petala" d="
+      M256,162
+      C228,172 226,206 256,220
+      C286,206 284,172 256,162 Z" />
+  </defs>
+
+  <!-- ANEL EXTERIOR (stroke apenas, sem fundo) -->
+  <g filter="url(#glow)">
+    <circle cx="256" cy="256" r="214" stroke="#4CC9F0" stroke-width="16"/>
+    <circle cx="256" cy="256" r="182" stroke="#34B6E1" stroke-width="6"/>
+  </g>
+
+  <!-- ROSETA CENTRAL (8 pétalas) -->
+  <g fill="#F5C76B" stroke="#F5C76B" stroke-width="2" transform="translate(0,0)">
+    <use href="#petala" transform="rotate(0 256 256)"/>
+    <use href="#petala" transform="rotate(45 256 256)"/>
+    <use href="#petala" transform="rotate(90 256 256)"/>
+    <use href="#petala" transform="rotate(135 256 256)"/>
+    <use href="#petala" transform="rotate(180 256 256)"/>
+    <use href="#petala" transform="rotate(225 256 256)"/>
+    <use href="#petala" transform="rotate(270 256 256)"/>
+    <use href="#petala" transform="rotate(315 256 256)"/>
+  </g>
+
+  <!-- VEIOS decorativos (linhas finas para dar “tech vibe”) -->
+  <g stroke="#223048" stroke-opacity="0.55" fill="none">
+    <circle cx="256" cy="256" r="150"/>
+    <circle cx="256" cy="256" r="120"/>
+    <circle cx="256" cy="256" r="90"/>
+  </g>
+
+  <!-- CÍRCULO CENTRAL -->
+  <circle cx="256" cy="256" r="10" fill="#4CC9F0"/>
+</svg>

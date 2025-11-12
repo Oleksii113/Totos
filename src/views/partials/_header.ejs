@@ -1,0 +1,19 @@
+<!--
+  _header.ejs
+  Header simples com título e botão "Desistir".
+  Podes esconder em páginas onde não faça sentido (ex.: home).
+-->
+<header class="site-header py-3 border-bottom">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-2">
+            <img src="/img/logo.svg" alt="Logo do jogo" height="32" />
+            <strong class="fs-5">Quem Quer Ser Milionário</strong>
+        </div>
+
+        <% if (typeof inGame !== "undefined" && inGame) { %>
+        <form action="/giveup" method="post">
+            <button class="btn btn-outline-primary btn-sm">Desistir</button>
+        </form>
+        <% } %>
+    </div>
+</header>

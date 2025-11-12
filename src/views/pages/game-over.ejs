@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <%- include("../partials/_head") %>
+    <body class="theme-dark d-flex flex-column min-vh-100">
+        <%- include("../partials/_header") %>
+
+        <main class="container my-5">
+            <div
+                class="card shadow-lg border-0 rounded-4 text-center mx-auto"
+                style="max-width: 720px"
+            >
+                <div class="card-body p-5">
+                    <h1 class="mb-3 result-title">
+                        <% if (result === "win") { %>
+                        <span class="result-win"><%= title %></span> <% } else
+                        if (result === "lose") { %>
+                        <span class="result-lose"><%= title %></span> <% } else
+                        { %> <span class="result-giveup"><%= title %></span>
+                        <% } %>
+                    </h1>
+
+                    <p class="lead mb-4">
+                        Prémio:
+                        <strong>€ <%= money.toLocaleString("pt-PT") %></strong>
+                    </p>
+
+                    <a href="/" class="btn btn-primary btn-lg"
+                        >Voltar ao início</a
+                    >
+                </div>
+            </div>
+        </main>
+
+        <%- include("../partials/_footer") %>
+    </body>
+</html>
