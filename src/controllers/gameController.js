@@ -18,6 +18,24 @@ import { pickNextQuestion, apply5050 } from "../utils/helpers.js";
 const MAX_INDEX = PRIZES.length - 1;
 
 /**
+ * 
+ * Obtem e valida o estado de jogo a partir da sessão.
+ * Se não existir jogo na sessão, redireciona para a home.
+ * 
+ * @function getGameOrRedirect
+ */
+
+function getGameOrRedirect(req, res) {
+    const game = req.session?.game;
+    if (!game) {
+        //Sem sessão, logo redireciona
+        res.redirect("/");
+        return null;
+    }
+    return game;
+}
+
+/**
  * GET /
  * Renderiza a página inicial com o botão "Começar".
  *
