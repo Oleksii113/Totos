@@ -35,6 +35,13 @@ function getGameOrRedirect(req, res) {
     return game;
 }
 
+export function showQuestion(req, res) {
+    const game = getGameOrRedirect(req, res);
+    if (!game) { 
+        return; 
+    }
+}
+
 /**
  * GET /
  * Renderiza a página inicial com o botão "Começar".
