@@ -19,7 +19,7 @@
 
 import { Router } from "express";
 
-import { showHome, startGame, showQuestion } from "../controllers/gameController.js";
+import { showHome, startGame, showQuestion, submitAnswer } from "../controllers/gameController.js";
 
 const router = Router();
 
@@ -33,5 +33,7 @@ router.get("/", showHome);
 router.post("/start", startGame);
 
 router.get("/game", showQuestion);
+
+router.get("/answer", submitAnswer);
 
 export default router;

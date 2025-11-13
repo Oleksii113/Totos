@@ -61,15 +61,15 @@ game.used["hint"] && game.hintQuestionId === game.currentQuestion.id; // ← só
 
 // Render da página principal do jogo
 res.render("pages/game", {
-title: "Em jogo",
-q: game.currentQuestion,
-index: game.currentIndex,
-prizes: game.prizes,
-used: game.used,
-removedOptions: game.removedOptions,
-showHint,
-inGame: true,
-});
+    title: "Em jogo",
+    q: game.currentQuestion,
+    index: game.currentIndex,
+    prizes: game.prizes,
+    used: game.used,
+    removedOptions: game.removedOptions,
+    showHint,
+    inGame: true,
+    });
 }
 
 /**
@@ -93,4 +93,36 @@ hintQuestionId: null, // ID da pergunta para a qual a dica foi dada
 };
 req.session.game.currentQuestion = pickNextQuestion(req.session.game);
 res.redirect("/game");
+}
+
+/**
+ * POST /answer
+ * Verifica se a opção submetida corresponde a resposta correta.
+ * - Se acertar:
+ *  - Se estiver no último nível - vitória.
+ *  - Caso contrário, avança o nível e escolhe nova pergunta.
+ * - Se falhar:
+ *  - Termina o jogo com o patamar de segurança, se aplicável.
+ * @function submitAnswer
+ */
+
+export function submitAnswer(req, res) {
+    const game = getGameOrRedirect(req, res);
+    if (!game) { return; }
+
+    // Ir busvar a opção do user e a resposta correta
+    const escolhida = Number(req.body.option);
+    const correta = game.currentQuestion.correctIndex;
+
+    if (escolhida === correta) {
+        return endGame(req, res, "win", game.prizes[game.currentIndex]);
+    
+    game.correctIndex += 1;
+    game.removedOptions = [];
+    game.used["hint"] = false;
+    game.hintQuestionId = null;
+    game.currentQuestion  = pickNextQuestion(game);
+    return res.redirect("/game"); 
+    }
+    return endGame(req, res, "lose", game.prizes[game.currentIndex]);
 }
